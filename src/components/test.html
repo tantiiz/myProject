@@ -1,0 +1,31 @@
+<html>
+  <body>
+    <script src="https://docs.opencv.org/4.7.0/opencv.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ColonelParrot/jscanify@master/src/jscanify.min.js"></script>
+    <!-- <img src="https://colonelparrot.github.io/jscanify/images/test/test.png" crossorigin="anonymous" id="image" /> -->
+    <img src="./test2.jpg" crossorigin="anonymous" id="image" />
+    <script>
+      cv.onRuntimeInitialized = function() {
+        function scan() {
+          const scanner = new jscanify()
+          const scanned = scanner.extractPaper(image, 386, 500)
+          document.body.appendChild(scanned)
+        }
+        image.onload = scan
+
+        if (image.complete) {
+          scan()
+        }
+      }
+    </script>
+  </body>
+</html>
+<script>
+  const paperHeight = 1000;
+  button.addEventListener('click', function () {
+    const highlightedCanvas = scanner.highlightPaper(image);
+    place.appendChild(highlightedCanvas);
+    const resultCanvas2 = scanner.extractPaper(image, paperWidth, paperHeight);
+    place.appendChild(resultCanvas2);
+  });
+</script>
